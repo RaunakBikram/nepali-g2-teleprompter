@@ -10,39 +10,32 @@ permissions:
   pages: write
   id-token: write
 
-concurrency:
-  group: github-pages
-  cancel-in-progress: true
-
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-     url: ${{ steps.deployment.outputs.page_url }}
+    environment: github-pages
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '22'
 
-      - name: Install dependencies
+      - name: Install
         run: npm install
 
-      - name: Build application
+      - name: Build
         run: npm run build -- --base=/nepali-g2-teleprompter/
 
-      - name: Configure Pages
+      - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload website
+      - name: Upload
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
-      - name: Deploy website
-        id: deployment
+      - name: Deploy
         uses: actions/deploy-pages@v4
