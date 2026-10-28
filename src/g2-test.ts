@@ -18,7 +18,7 @@ export async function testG2Connection() {
           yPosition: 0,
           width: 576,
           height: 288,
-          content: "HELLO G2",
+          content: "नमस्कार नेपाल",
           isEventCapture: 1,
         }),
       ],
