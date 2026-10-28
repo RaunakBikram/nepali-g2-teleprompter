@@ -1,4 +1,8 @@
-const pages = [
+import { testG2Connection } from "./g2-test";
+
+void testG2Connection();
+
+  const pages = [
   "नमस्कार दर्शकवृन्द।",
   "आजको कार्यक्रममा यहाँहरूलाई स्वागत छ।",
   "आज हामी नेपालको बारेमा कुरा गर्नेछौँ।"
