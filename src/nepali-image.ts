@@ -22,7 +22,7 @@ export function createNepaliImage(page: number = 0): Uint8Array {
 
   // Draw Nepali text
   ctx.fillStyle = "#FFFFFF";
-  ctx.font = "bold 18px sans-serif";
+  ctx.font = "18px sans-serif";
   ctx.textAlign = "left";
   ctx.textBaseline = "top";
   for (const word of words) {
