@@ -38,7 +38,7 @@ export function createNepaliImage(page: number = 0): Uint8Array {
   if (currentLine) {
   lines.push(currentLine);
   }
-  const pageLines = lines.slice(page * 8, page * 8 + 8);
+  const pageLines = lines.slice(page * 7, page * 7 + 7);
   pageLines.forEach((line, index) => {
   ctx.fillText(line, 8, 4 + index * 20, 272);
 });
