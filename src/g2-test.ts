@@ -6,6 +6,7 @@ import {
 } from "@evenrealities/even_hub_sdk";
 
 export async function testG2Connection() {
+  let currentPage = 0;
   try {
     const bridge = await waitForEvenAppBridge();
 
@@ -37,8 +38,7 @@ export async function testG2Connection() {
 ], 
     });
 
-const nepaliPixels = createNepaliImage();
-
+const nepaliPixels = createNepaliImage(currentPage);
 await bridge.updateImageRawData({
   containerID: 2,
   containerName: "nepali-img",
