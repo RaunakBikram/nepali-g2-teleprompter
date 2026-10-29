@@ -38,9 +38,9 @@ export function createNepaliImage(page: number = 0): Uint8Array {
   if (currentLine) {
   lines.push(currentLine);
   }
-  const pageLines = lines.slice(page * 5, page * 5 + 5);
+  const pageLines = lines.slice(page * 8, page * 8 + 8);
   pageLines.forEach((line, index) => {
-  ctx.fillText(line, 8, 14 + index * 26, 272);
+  ctx.fillText(line, 8, 8 + index * 19, 272);
 });
   // Convert pixels to grayscale bytes
   const rgba = ctx.getImageData(0, 0, width, height).data;
