@@ -1,7 +1,11 @@
-
-export function createNepaliImage(): Uint8Array {
+import { speech } from "./speech";
+export function createNepaliImage(page: number = 0): Uint8Array {
   const width = 288;
   const height = 144;
+  const words = speech.trim().split(/\s+/);
+  const lines: string[] = [];
+  let currentLine = "";
+  const maxTextWidth = 272;
 
   const canvas = document.createElement("canvas");
   canvas.width = width;
@@ -21,11 +25,23 @@ export function createNepaliImage(): Uint8Array {
   ctx.font = "bold 18px sans-serif";
   ctx.textAlign = "left";
   ctx.textBaseline = "top";
-  ctx.fillText("चुनावमा मिठो बोलेर जनतालाई फस्लाई", 8, 8, 272);
-  ctx.fillText("सत्तामा बस्नु भएको श्री भौमानलाई", 8, 34, 272);
-  ctx.fillText("मेरो प्रणाम। बल्ल एउटा राम्रो काम", 8, 60, 272);
-  ctx.fillText("गर्नु भयो। पत्रकारितको नाममा", 8, 86, 272);
-  ctx.fillText("ब्ल्याकमेलिङ गर्दै कमाउँदै आएको", 8, 112, 272);
+  for (const word of words) {
+    const testLine = currentLine ? currentLine + " " + word : word;
+    const textWidth = ctx.measureText(testLine).width;
+    if (textWidth <= maxTextWidth) {
+  currentLine = testLine;
+    } else {
+  lines.push(currentLine);
+  currentLine = word;
+}
+  }
+  if (currentLine) {
+  lines.push(currentLine);
+  }
+  const pageLines = lines.slice(page * 5, page * 5 + 5);
+  pageLines.forEach((line, index) => {
+  ctx.fillText(line, 8, 8 + index * 26, 272);
+});
   // Convert pixels to grayscale bytes
   const rgba = ctx.getImageData(0, 0, width, height).data;
   const gray = new Uint8Array(width * height);
