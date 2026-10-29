@@ -3,6 +3,7 @@ import {
   waitForEvenAppBridge,
   TextContainerProperty,
   ImageContainerProperty,
+  OsEventTypeList,
 } from "@evenrealities/even_hub_sdk";
 
 export async function testG2Connection() {
@@ -37,7 +38,31 @@ export async function testG2Connection() {
   }),
 ], 
     });
-
+bridge.onEvenHubEvent((event) => {
+  console.log("G2/R1 event:", event);
+  const eventType = event.textEvent?.eventType;
+  
+if (eventType === OsEventTypeList.SCROLL_TOP_EVENT) {
+  currentPage++;
+  console.log("Next page:", currentPage);
+}
+  if (eventType === OsEventTypeList.SCROLL_BOTTOM_EVENT) {
+  currentPage = Math.max(0, currentPage - 1);
+  console.log("Previous page:", currentPage);
+  }
+  if (
+  eventType === OsEventTypeList.SCROLL_TOP_EVENT ||
+  eventType === OsEventTypeList.SCROLL_BOTTOM_EVENT
+) {
+  void bridge.updateImageRawData({
+    containerID: 2,
+    containerName: "nepali-img",
+    imageData: createNepaliImage(currentPage),
+  }).catch((error) => {
+    console.error("Page update failed:", error);
+  });
+  }
+});
 const nepaliPixels = createNepaliImage(currentPage);
 await bridge.updateImageRawData({
   containerID: 2,
