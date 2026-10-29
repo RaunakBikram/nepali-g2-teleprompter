@@ -18,11 +18,14 @@ export function createNepaliImage(): Uint8Array {
 
   // Draw Nepali text
   ctx.fillStyle = "#FFFFFF";
-  ctx.font = "bold 26px sans-serif";
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  ctx.fillText("नमस्कार नेपाल", 144, 72, 270);
-
+  ctx.font = "bold 18px sans-serif";
+  ctx.textAlign = "left";
+  ctx.textBaseline = "top;
+  ctx.fillText("चुनावमा मिठो बोलेर जनतालाई फस्लाई", 8, 8, 272);
+  ctx.fillText("सत्तामा बस्नु भएको श्री भौमानलाई", 8, 34, 272);
+  ctx.fillText("मेरो प्रणाम। बल्ल एउटा राम्रो काम", 8, 60, 272);
+  ctx.fillText("गर्नु भयो। पत्रकारितको नाममा", 8, 86, 272);
+  ctx.fillText("ब्ल्याकमेलिङ गर्दै कमाउँदै आएको", 8, 112, 272);
   // Convert pixels to grayscale bytes
   const rgba = ctx.getImageData(0, 0, width, height).data;
   const gray = new Uint8Array(width * height);
