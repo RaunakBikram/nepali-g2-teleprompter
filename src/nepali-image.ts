@@ -20,7 +20,7 @@ export function createNepaliImage(): Uint8Array {
   ctx.fillStyle = "#FFFFFF";
   ctx.font = "bold 18px sans-serif";
   ctx.textAlign = "left";
-  ctx.textBaseline = "top;
+  ctx.textBaseline = "top";
   ctx.fillText("चुनावमा मिठो बोलेर जनतालाई फस्लाई", 8, 8, 272);
   ctx.fillText("सत्तामा बस्नु भएको श्री भौमानलाई", 8, 34, 272);
   ctx.fillText("मेरो प्रणाम। बल्ल एउटा राम्रो काम", 8, 60, 272);
