@@ -1,11 +1,11 @@
 import { speech } from "./speech";
 export function createNepaliImage(page: number = 0): Uint8Array {
-  const width = 288;
-  const height = 144;
+  const width = 576;
+  const height = 288;
   const words = speech.trim().split(/\s+/);
   const lines: string[] = [];
   let currentLine = "";
-  const maxTextWidth = 272;
+  const maxTextWidth = 560;
 
   const canvas = document.createElement("canvas");
   canvas.width = width;
@@ -40,7 +40,7 @@ export function createNepaliImage(page: number = 0): Uint8Array {
   }
   const pageLines = lines.slice(page * 8, page * 8 + 8);
   pageLines.forEach((line, index) => {
-  ctx.fillText(line, 8, 8 + index * 19, 272);
+  ctx.fillText(line, 8, 48 + index * 28, 560);
 });
   // Convert pixels to grayscale bytes
   const rgba = ctx.getImageData(0, 0, width, height).data;
